@@ -49,9 +49,11 @@ function startGame(rows, cols) {
             const fishName = cardFishes[cardIndex++];
             const cell = document.createElement('div');
             cell.className = 'card';
+            cell.textContent = 'Brain Flip';
 
             cell.addEventListener('click', function () {
-                if (!cell.classList.contains('flip')) {
+                console.log('Clicked on cell with fish:', cell.classList, fishName);
+                if (!cell.classList.contains('flip') && !cell.classList.contains('done')) {
                     cell.classList.add('flip');
                     const img = document.createElement('img');
                     img.src = './images/' + fishName + '.png';
@@ -68,6 +70,7 @@ function startGame(rows, cols) {
                             flippedCells.forEach(c => {
                                 c.classList.remove('flip');
                                 c.innerHTML = '';
+                                c.textContent = 'Brain Flip';
                             });
                         }, 1000);
                     }
@@ -99,7 +102,10 @@ function checkWin(allFishesCount) {
             const doneCards = document.querySelectorAll('.done');
             if (doneCards.length === allFishesCount) { // Total 8 cards for easy level
                 setTimeout(() => {
-                    alert('You win!');
+                    document.getElementById('winModal').classList.remove('hidden');
+                    setTimeout(() => {
+                        document.getElementById('winModal').classList.add('hidden');
+                    }, 3000); // Hide the modal after 3 seconds
                     resetGame(); // Restart the game after winning
                 }, 300); // Delay the alert so the match is visible
             }

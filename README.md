@@ -29,3 +29,7 @@ All fish images used in the game are stored in the `/images` or `/assets` direct
 
    ```bash
    git clone https://github.com/Jeyamathi/FlipGame.git
+
+2. Open the project folder in a code editor or IDE.
+
+3. Open index.html in a browser
